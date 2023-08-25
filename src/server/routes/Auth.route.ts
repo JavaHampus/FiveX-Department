@@ -37,6 +37,20 @@ export const fetchRanks = async (req: Request, res: Response , discordId: string
     req.session.user!.rank = ranksArray
 }
 
+/**
+ * Create database field if not already.
+ * @param req
+ * @param discordId 
+ */
+export const getDatabaseInformation = async (discordId: string, req: Request) => {
+    const guild: Guild | undefined = await client.guilds.cache.get(SERVER.SERVER_ID)
+    const user: GuildMember | undefined = await guild?.members.cache.get(discordId)
+
+    req.session.user!.officer_name = user?.displayName
+    req.session.user!.callsign = "X-XX"
+}
+
+
 const router: Router = Router();
 
 router.get('/callback', async (req: Request, res: Response) => {

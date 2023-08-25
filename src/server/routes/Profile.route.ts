@@ -11,7 +11,7 @@ import { Request, Response, Router } from 'express';
 const router: Router = Router();
 
 router.get('/', (req: Request, res: Response) => {
-    return res.render('index')
+    return res.render('profile')
 })
 
-export const HomeRoute: Router = router;
+export const ProfileRoute: Router = router;

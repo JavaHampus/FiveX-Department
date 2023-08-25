@@ -13,6 +13,8 @@ import path from 'path';
 import { Middleware } from "./middleware/MiddlewareMethod";
 
 import { AuthRoute } from "./routes/Auth.route";
+import { HomeRoute } from "./routes/Home.route";
+import { ProfileRoute } from "./routes/Profile.route";
 
 export const app: Express = express();
 
@@ -29,9 +31,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, '/views'));
 
 app.use(Middleware)
-
-app.get('/', (req: Request, res: Response) => {
-    return res.render('index')
-})
+app.use('/', HomeRoute)
+app.use('/profile', ProfileRoute)
 
 app.use('/auth', AuthRoute)
